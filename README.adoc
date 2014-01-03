@@ -81,7 +81,7 @@ Let's create a simple web page that has a nice animation.
 <head>
     <title>Getting Started: Spring Boot CLI + Javascript</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script src="jquery-2.0.3.js"></script>
+    <script src="public/jquery-2.0.3.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('p').animate({
@@ -111,7 +111,8 @@ This seemingly empty application comes preloaded with a lot of features thanks t
 - @Controller gives a signal that this is a Spring MVC application and Boot will launch an embedded
 Tomcat servlet container.
 - Several paths are autoloaded for serving assets, including `/public`. That's where we placed our web template and Javascript library.
-- 
+
+From here you can add RESTful endpoints to the backend, work on your front end, and grow your application as needed.
 
 == Summary
 Spring Boot CLI provides a rapid way to create a back end server app. It also supports plugging in your 
