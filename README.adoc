@@ -48,11 +48,21 @@ Now create the simplest application possible.
 `app.groovy`
 [source,groovy]
 ----
+@Grab("thymeleaf-spring3")
+
+import org.springframework.ui.Model
+
 @Controller
-class Application { }
+class Application { 
+	@RequestMapping("/greeting")
+	public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
+		model.addAttribute("name", name);
+		return "greeting";
+	}
+}
 ----
 
-NOTE: You read that right. This is an empty class with an @Controller annotation.
+This Spring MVC controller defines a REST endpoint at `/greeting`. We'll write the template for that later in this guide.
 
 == Adding a Javascript library
 
@@ -63,18 +73,33 @@ Update your application so it looks like this:
 [source,groovy]
 ----
 @Grab("org.webjars:jquery:2.0.3-1") // this will automatically fetch jquery
+@Grab("thymeleaf-spring3")
+
+import org.springframework.ui.Model
 
 @Controller
-class Application { }
+class Application { 
+	@RequestMapping("/greeting")
+	public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
+		model.addAttribute("name", name);
+		return "greeting";
+	}
+}
 ----
 
 NOTE: Feel free to read more about http://spring.io/blog/2014/01/03/utilizing-webjars-in-spring-boot[Spring Boot + webjars].
 
 == Writing a web front end
 
-Let's create a simple web page that has a nice animation.
+Let's create a Thymeleaf template to support our RESTful endpoint.
 
-`public/index.html`
+----
+mkdir templates
+----
+
+Now add the following template:
+
+`templates/greeting.html`
 [source,html]
 ----
 <!DOCTYPE HTML>
@@ -92,7 +117,7 @@ Let's create a simple web page that has a nice animation.
     </script>
 </head>
 <body>
-    <p>Greetings Spring Boot user!</p>
+    <p th:text="'Hello, ' + ${name} + '!'" />
 </body>
 </html>
 ----
@@ -113,7 +138,7 @@ This almost empty application comes preloaded with a lot of features thanks to S
 
 - @Controller gives a signal that this is a Spring MVC application and Boot will launch an embedded
 Tomcat servlet container.
-- Several paths are autoloaded for serving assets(see https://spring.io/blog/2014/01/03/utilizing-webjars-in-spring-boot[webjars] and https://spring.io/blog/2013/12/19/serving-static-web-content-with-spring-boot[static web content] blog entries for more details). That's why we placed our web template in the `/public` folder.
+- Several paths are autoloaded for serving assets(see https://spring.io/blog/2014/01/03/utilizing-webjars-in-spring-boot[webjars] and https://spring.io/blog/2013/12/19/serving-static-web-content-with-spring-boot[static web content] blog entries for more details). That's why we placed our web template in the `/templates` folder.
 
 From here you can add RESTful endpoints to the backend, work on your front end, and grow your application as needed.
 
