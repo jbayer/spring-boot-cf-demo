@@ -62,7 +62,8 @@ Update your application so it looks like this:
 
 [source,groovy]
 ----
-@Grab("org.webjars:jquery:2.0.3-1")
+@Grab("org.webjars:jquery:2.0.3-1") // this will automatically fetch jquery
+
 @Controller
 class Application { }
 ----
