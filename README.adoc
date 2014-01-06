@@ -110,7 +110,7 @@ This seemingly empty application comes preloaded with a lot of features thanks t
 
 - @Controller gives a signal that this is a Spring MVC application and Boot will launch an embedded
 Tomcat servlet container.
-- Several paths are autoloaded for serving assets, including `/public`. That's where we placed our web template and Javascript library.
+- Several paths are autoloaded for serving assets(see https://spring.io/blog/2014/01/03/utilizing-webjars-in-spring-boot[here] and https://spring.io/blog/2013/12/19/serving-static-web-content-with-spring-boot[here]), including `/public`. That's where we placed our web template and Javascript library.
 
 From here you can add RESTful endpoints to the backend, work on your front end, and grow your application as needed.
 
