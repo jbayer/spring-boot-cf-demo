@@ -56,18 +56,18 @@ NOTE: You read that right. This is an empty class with an @Controller annotation
 
 == Adding a Javascript library
 
-We need a place to host our client-side assets.
+Let's demonstrate this using a jQuery animation. We first need to grab a copy of jQuery. The simplest option would to add a Groovy @Grab annotation to our application that automatically fetches it.
 
+Update your application so it looks like this:
+
+[source,groovy]
 ----
-mkdir -p public
-cd public
-wget http://code.jquery.com/jquery-2.0.3.js
-cd ..
+@Grab("org.webjars:jquery:2.0.3-1")
+@Controller
+class Application { }
 ----
 
-We just downloaded http://jquery.com/download/[jQuery].
-
-NOTE: As you can see, we pulled down the library directly. You are also free to use your favorite JS dependency management tool such as npm or bower.
+NOTE: Feel free to read more about http://spring.io/blog/2014/01/03/utilizing-webjars-in-spring-boot[Spring Boot + webjars].
 
 == Writing a web front end
 
@@ -81,7 +81,7 @@ Let's create a simple web page that has a nice animation.
 <head>
     <title>Getting Started: Spring Boot CLI + Javascript</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script src="public/jquery-2.0.3.js"></script>
+    <script src="webjars/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('p').animate({
@@ -96,6 +96,8 @@ Let's create a simple web page that has a nice animation.
 </html>
 ----
 
+NOTE: Because we used webjars, jQuery is found at `webjars/jquery/<version>/<library>`.
+
 == Running the application
 
 Now launch the application.
@@ -106,17 +108,16 @@ spring run -cp . app.groovy
 
 See the animation by visiting http://localhost:8080.
 
-This seemingly empty application comes preloaded with a lot of features thanks to Spring Boot.
+This almost empty application comes preloaded with a lot of features thanks to Spring Boot.
 
 - @Controller gives a signal that this is a Spring MVC application and Boot will launch an embedded
 Tomcat servlet container.
-- Several paths are autoloaded for serving assets(see https://spring.io/blog/2014/01/03/utilizing-webjars-in-spring-boot[here] and https://spring.io/blog/2013/12/19/serving-static-web-content-with-spring-boot[here]), including `/public`. That's where we placed our web template and Javascript library.
+- Several paths are autoloaded for serving assets(see https://spring.io/blog/2014/01/03/utilizing-webjars-in-spring-boot[webjars] and https://spring.io/blog/2013/12/19/serving-static-web-content-with-spring-boot[static web content] blog entries for more details). That's why we placed our web template in the `/public` folder.
 
 From here you can add RESTful endpoints to the backend, work on your front end, and grow your application as needed.
 
 == Summary
 Spring Boot CLI provides a rapid way to create a back end server app. It also supports plugging in your 
-favorite Javascript resources, CSS libraries, and HTML templates. You don't have to create a project file.
-Instead, you can dive quickly into building your application.
+favorite Javascript resources and HTML templates. You also could have staged CSS assets. Bottom line: you don't have to create a project file. Instead, you can dive quickly into building your application.
 
 
