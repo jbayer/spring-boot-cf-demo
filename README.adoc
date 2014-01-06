@@ -4,7 +4,7 @@
 :project_id: gs-spring-boot-cli-and-js
 
 This guide shows how to use Spring Boot's Command Line Interface to create a rich application with a
-backend support by Spring MVC and a web-based front end using a mixture of HTML and jQuery.
+backend support by Spring MVC and a web-based front end using Thymeleaf template engine and jQuery.
 
 == What you'll build
 
@@ -78,7 +78,7 @@ Let's create a simple web page that has a nice animation.
 [source,html]
 ----
 <!DOCTYPE HTML>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Getting Started: Spring Boot CLI + Javascript</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
