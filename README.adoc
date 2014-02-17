@@ -1,3 +1,7 @@
+---
+tags: [JavaScript, spring-boot, groovy]
+projects: [spring-boot]
+---
 :toc:
 :icons: font
 :source-highlighter: prettify
@@ -68,7 +72,7 @@ NOTE: Feel free to read more about http://spring.io/blog/2014/01/03/utilizing-we
 
 == Writing a web front end
 
-Let's create a Thymeleaf template to support our RESTful endpoint.
+Let's create a Thymeleaf template to support our Spring MVC endpoint.
 
 ----
 mkdir templates
