@@ -19,7 +19,9 @@ include::https://raw.github.com/spring-guides/getting-started-macros/master/how_
 
 [[scratch]]
 == Install Spring Boot's CLI
-Spring Boot comes with a Command Line Interface. You can either install it via gvm:
+Spring Boot comes with a Command Line Interface. There are several ways to install it.
+
+You can install it via gvm:
 
 ----
 curl -s get.gvmtool.net | bash
@@ -48,43 +50,18 @@ Now create the simplest application possible.
 `app.groovy`
 [source,groovy]
 ----
-@Grab("thymeleaf-spring3")
-
-import org.springframework.ui.Model
-
-@Controller
-class Application { 
-	@RequestMapping("/greeting")
-	public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
-		model.addAttribute("name", name);
-		return "greeting";
-	}
-}
+include::app.groovy[lines=2..999]
 ----
 
 This Spring MVC controller defines a REST endpoint at `/greeting`. We'll write the template for that later in this guide.
 
 == Adding a Javascript library
 
-Let's demonstrate this using a jQuery animation. We first need to grab a copy of jQuery. The simplest option would to add a Groovy @Grab annotation to our application that automatically fetches it.
-
-Update your application so it looks like this:
+Let's demonstrate this using a jQuery animation. We first need to grab a copy of jQuery. The simplest option would to add a Groovy @Grab annotation to the top of your application that automatically fetches it.
 
 [source,groovy]
 ----
-@Grab("org.webjars:jquery:2.0.3-1") // this will automatically fetch jquery
-@Grab("thymeleaf-spring3")
-
-import org.springframework.ui.Model
-
-@Controller
-class Application { 
-	@RequestMapping("/greeting")
-	public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
-		model.addAttribute("name", name);
-		return "greeting";
-	}
-}
+include::app.groovy[lines=1]
 ----
 
 NOTE: Feel free to read more about http://spring.io/blog/2014/01/03/utilizing-webjars-in-spring-boot[Spring Boot + webjars].
@@ -102,24 +79,7 @@ Now add the following template:
 `templates/greeting.html`
 [source,html]
 ----
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Getting Started: Spring Boot CLI + Javascript</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script src="webjars/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('p').animate({
-                fontSize: '48px'
-            }, "slow");
-        });
-    </script>
-</head>
-<body>
-    <p th:text="'Hello, ' + ${name} + '!'" />
-</body>
-</html>
+include::templates/greeting.html[]
 ----
 
 NOTE: Because we used webjars, jQuery is found at `webjars/jquery/<version>/<library>`.
@@ -132,7 +92,7 @@ Now launch the application.
 spring run -cp . app.groovy
 ----
 
-See the animation by visiting http://localhost:8080.
+See the animation by visiting http://localhost:8080/greeting.
 
 This almost empty application comes preloaded with a lot of features thanks to Spring Boot.
 
