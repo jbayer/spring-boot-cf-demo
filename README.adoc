@@ -1,5 +1,5 @@
 ---
-tags: [JavaScript, spring-boot, groovy]
+tags: [JavaScript, spring-boot, groovy, cli]
 projects: [spring-boot]
 ---
 :toc:
