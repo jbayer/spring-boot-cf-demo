@@ -19,6 +19,8 @@ You'll build a web application using Groovy and Spring while also using Thymelea
 include::https://raw.github.com/spring-guides/getting-started-macros/master/prereq_editor_jdk_buildtools.adoc[]
 
 
+:initial: /
+:complete: /
 include::https://raw.github.com/spring-guides/getting-started-macros/master/how_to_complete_this_guide.adoc[]
 
 [[scratch]]
@@ -48,6 +50,7 @@ spring --version
 
 With either of these options, you are now in business to create a Spring application with minimal effort.
 
+[[initial]]
 == Creating a Spring application
 Now create the simplest application possible.
 
