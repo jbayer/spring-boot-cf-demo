@@ -3,9 +3,40 @@
 
 @Controller
 class Application {
-	@RequestMapping("/greeting")
-	public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
+
+	@RequestMapping("/")
+	public String index(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
+
 		model.addAttribute("name", name)
-		return "greeting"
+
+		String index = "-"
+		if( System.getenv("INSTANCE_INDEX") != null )
+			index = System.getenv("INSTANCE_INDEX")
+                if( System.getenv("CF_INSTANCE_INDEX") != null )
+                        index = System.getenv("CF_INSTANCE_INDEX")
+		model.addAttribute("index", index)
+
+		java.lang.management.RuntimeMXBean rb = java.lang.management.ManagementFactory.getRuntimeMXBean()
+		long uptime = rb.getUptime()
+		model.addAttribute("uptime", uptime)
+
+		return "index"
 	}
+
+@RequestMapping("/env")
+public String index(Model model) {
+
+	model.addAttribute("env", System.getenv() )
+
+	return "env"
+}
+
+
+	@RequestMapping("/exit")
+	public String exit(Model model) {
+		System.exit(1);
+
+		return "exit"
+	}
+
 }
