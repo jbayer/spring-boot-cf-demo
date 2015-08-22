@@ -7,12 +7,11 @@ projects: [spring-boot]
 :source-highlighter: prettify
 :project_id: gs-spring-boot-cli-and-js
 
-This guide shows how to use Spring Boot's Command Line Interface to create a rich application with a
-backend support by Spring MVC and a web-based front end using Thymeleaf template engine and jQuery.
+This is a basic app built with Spring Boot, Thymeleaf and Jquery. It has 3 main endpoints:
 
-== What you'll build
-
-You'll build a web application using Groovy and Spring while also using Thymeleaf and jQuery.
+* / - show the index of the app instance and uptime from the app instance that served the request, which should change when loadbalanced and refreshed with multiple instances of the app running.
+* /env - show the environment variables set for the application
+* /exit - exit the application instance that served the request
 
 == What you'll need
 
@@ -61,11 +60,11 @@ Now create the simplest application possible.
 include::app.groovy[lines=2..999]
 ----
 
-This Spring MVC controller defines a REST endpoint at `/greeting`. We'll write the template for that later in this guide.
+This Spring MVC controller defines the REST endpoints
 
-== Adding a Javascript library
+== Javascript library
 
-Let's demonstrate this using a jQuery animation. We first need to grab a copy of jQuery. The simplest option would to add a Groovy @Grab annotation to the top of your application that automatically fetches it.
+This app uses jQuery. See the Groovy @Grab annotation to the top of your application that automatically fetches it.
 
 [source,groovy]
 ----
@@ -74,21 +73,9 @@ include::app.groovy[lines=1]
 
 NOTE: Feel free to read more about http://spring.io/blog/2014/01/03/utilizing-webjars-in-spring-boot[Spring Boot + webjars].
 
-== Writing a web front end
+== The web templates
 
-Let's create a Thymeleaf template to support our Spring MVC endpoint.
-
-----
-mkdir templates
-----
-
-Now add the following template:
-
-`templates/greeting.html`
-[source,html]
-----
-include::templates/greeting.html[]
-----
+Thymeleaf templates are in the templates directory.
 
 NOTE: Because we used webjars, jQuery is found at `webjars/jquery/<version>/<library>`.
 
@@ -100,18 +87,14 @@ Now launch the application.
 spring run -cp . app.groovy
 ----
 
-See the animation by visiting http://localhost:8080/greeting.
+See the animation by visiting http://localhost:8080/.
 
-This almost empty application comes preloaded with a lot of features thanks to Spring Boot.
+----
+cf push spring-boot-cf-demo app.groovy
+----
 
-- @Controller gives a signal that this is a Spring MVC application and Boot will launch an embedded
-Tomcat servlet container.
+See the animation by visiting http://spring-boot-cf-demo.systemdomain. Not that URL may not be available so you may need to use something like the `--random-route` option on the cf push command.
+
 - Several paths are autoloaded for serving assets(see https://spring.io/blog/2014/01/03/utilizing-webjars-in-spring-boot[webjars] and https://spring.io/blog/2013/12/19/serving-static-web-content-with-spring-boot[static web content] blog entries for more details). That's why we placed our web template in the `/templates` folder.
 
 From here you can add RESTful endpoints to the backend, work on your front end, and grow your application as needed.
-
-== Summary
-Spring Boot CLI provides a rapid way to create a back end server app. It also supports plugging in your 
-favorite Javascript resources and HTML templates. You also could have staged CSS assets. Bottom line: you don't have to create a project file. Instead, you can dive quickly into building your application.
-
-
