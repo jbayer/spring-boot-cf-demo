@@ -1,0 +1,165 @@
+<html>
+<head>
+<style>
+
+body {
+    font-family: "helveticaneue-light";
+    font-size: 16px;
+    color: #333;
+    position: absolute;
+    margin:0;
+    width:100%;
+    height:100%;
+}
+
+.hello {
+  position:absolute;
+  top:0;
+  height:120px;
+  left:0;
+  right:0;
+  text-align:center;
+  font-size:60px;
+  font-weight:bold;
+  line-height:120px;
+  color: #29A329;
+}
+
+.goodbye {
+  position:absolute;
+  top:0;
+  height:120px;
+  left:0;
+  right:0;
+  text-align:center;
+  font-size:60px;
+  font-weight:bold;
+  line-height:120px;
+  background-color: #f00;
+  color: white;
+}
+
+.my-index {
+  position:absolute;
+  top:120px;
+  height:60px;
+  font-size:30px;
+  line-height:30px;
+  left:0;
+  right:0;
+  text-align:center;
+  color: #29A329
+}
+
+.my-index-goodbye {
+  position:absolute;
+  top:120px;
+  height:60px;
+  font-size:30px;
+  line-height:30px;
+  left:0;
+  right:0;
+  text-align:center;
+  background-color: #f00;
+  color: white;
+}
+
+.index {
+  position:absolute;
+  top:180px;
+  height:120px;
+  left:0;
+  right:0;
+  color: #fff;
+  font-size: 30px;
+  line-height: 120px;
+  background-color: #29A329;
+  text-align:center;
+}
+
+.index-goodbye {
+  position:absolute;
+  top:180px;
+  height:120px;
+  left:0;
+  right:0;
+  color: #fff;
+  font-size: 30px;
+  line-height: 120px;
+  background-color: rgb(235, 13, 5);
+  text-align:center;
+}
+
+.mid-color {
+  position:absolute;
+  top:300px;
+  height:120px;
+  left:0;
+  right:0;
+  color: #fff;
+  font-size: 30px;
+  line-height: 120px;
+  background-color: #218221;
+  text-align: center;
+}
+
+.mid-color-goodbye {
+  position:absolute;
+  top:300px;
+  height:120px;
+  left:0;
+  right:0;
+  color: #fff;
+  font-size: 30px;
+  line-height: 120px;
+  background-color: rgb(206, 26, 4);
+  text-align: center;
+}
+
+.bottom-color {
+  position:absolute;
+  top:420px;
+  bottom:0;
+  left:0;
+  right:0;
+  text-align:center;
+  background-color: #1A681A;
+  color: white;
+}
+
+.bottom-color-goodbye {
+  position:absolute;
+  top:420px;
+  bottom:0;
+  left:0;
+  right:0;
+  text-align:center;
+  background-color: rgb(185, 4, 9);
+  color: white;
+}
+
+dt {
+  color:#777;
+}
+
+.envs {
+  margin:10px
+}
+
+</style>
+</head>
+<body class="">
+
+<div class="goodbye">
+  <!--
+  <img src="spring-by-pivotal.png"/>
+  -->
+  <img src="http://demoimages.cfapps.io/spring_logo.png"/>
+</div>
+<div class="my-index-goodbye">Shutting down index</div>
+<div class="index-goodbye"><span th:text="${index}" /></div>
+<div class="mid-color-goodbye"></div>
+<div class="bottom-color-goodbye"></div>
+
+</body>
+</html>

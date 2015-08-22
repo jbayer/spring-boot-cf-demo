@@ -8,13 +8,7 @@ class Application {
 	public String index(@RequestParam(value="name", required=false, defaultValue="World") String name, Model model) {
 
 		model.addAttribute("name", name)
-
-		String index = "-"
-		if( System.getenv("INSTANCE_INDEX") != null )
-			index = System.getenv("INSTANCE_INDEX")
-                if( System.getenv("CF_INSTANCE_INDEX") != null )
-                        index = System.getenv("CF_INSTANCE_INDEX")
-		model.addAttribute("index", index)
+		model.addAttribute("index", findIndex())
 
 		java.lang.management.RuntimeMXBean rb = java.lang.management.ManagementFactory.getRuntimeMXBean()
 		long uptime = rb.getUptime()
@@ -34,9 +28,32 @@ public String index(Model model) {
 
 	@RequestMapping("/exit")
 	public String exit(Model model) {
-		System.exit(1);
+
+    model.addAttribute("index", findIndex())
+		try{
+			new Thread(new Runnable() {
+
+					@Override
+					public void run() {
+					  Thread.sleep(500);
+						System.exit(1);
+					}
+			}).start();
+		}
+		catch(Exception e){}
 
 		return "exit"
 	}
 
+	private String findIndex()
+	{
+			String index = "-"
+
+			if( System.getenv("INSTANCE_INDEX") != null )
+				index = System.getenv("INSTANCE_INDEX")
+	    if( System.getenv("CF_INSTANCE_INDEX") != null )
+	    	index = System.getenv("CF_INSTANCE_INDEX")
+
+			return index;
+	}
 }
