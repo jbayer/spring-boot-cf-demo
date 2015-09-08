@@ -90,7 +90,7 @@ spring run -cp . app.groovy
 See the animation by visiting http://localhost:8080/.
 
 ----
-cf push spring-boot-cf-demo app.groovy
+cf push spring-boot-cf-demo
 ----
 
 See the animation by visiting http://spring-boot-cf-demo.systemdomain. Not that URL may not be available so you may need to use something like the `--random-route` option on the cf push command.
